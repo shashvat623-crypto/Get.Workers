@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KaamMitra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<h1>KaamMitra</h1>
+
+<form method="POST" enctype="multipart/form-data"></form>
+    <h2>Add Worker</h2>
+
+    <input type="file" name="photo" required>
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="skill" placeholder="Skill" required>
+    <input type="text" name="area" placeholder="Area" required>
+    <input type="text" name="phone" placeholder="Phone" required>
+
+    <button type="submit">Add Worker</button>
+</form>
+
+<form method="GET">
+    <h2>Search</h2>
+    <input type="text" name="search" placeholder="Search skill">
+    <button type="submit">Search</button>
+</form>
+
+{% for worker in workers %}
+<div class="card">
+
+    <img src="{{ url_for('static', filename='uploads/' + worker[4]) }}" width="120">
+
+    <h3>{{ worker[0] }}</h3>
+    <p>{{ worker[1] }}</p>
+    <p>{{ worker[2] }}</p>
+    <p>{{ worker[3] }}</p>
+
+    <a href="https://wa.me/{{ worker[3] }}" target="_blank">WhatsApp</a>
+
+</div>
+{% endfor %}
